@@ -1,5 +1,7 @@
 package se.kth.sda.skeleton.posts;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -7,6 +9,10 @@ import java.util.Optional;
     @TODO Autowire the PostRepository and use it to implement all the service methods.
  */
 public class PostService {
+
+    @Autowired
+    private PostRepository postRepository;
+
     public List<Post> getAll() {
         // @TODO get all posts and return them as List<Post>
         return null;
