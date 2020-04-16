@@ -1,20 +1,23 @@
 package se.kth.sda.skeleton.posts;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
-// @TODO add Hibernate annotations to define which table and columns should be used to save the Post Object.
+
 @Entity
 @Table(name="post")
 public class Post {
+
     @Id
     @Column(name="id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name="body")
     private String body;
+
+    @Column(name="title")
+    private String title;
+
 
 //    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
 //    private List<Comment> comments = new ArrayList<>();
