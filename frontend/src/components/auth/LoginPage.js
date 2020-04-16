@@ -24,8 +24,8 @@ class LoginPage extends Component {
                 <div className="container">
                     <div className="row mt-4">
                         <div className="col-md-6 " style={{color: "white"}}>
-                            <h1>SDA</h1>
-                            <p>Starter template</p>
+                            <h1>Dream Vacation Place Forum</h1>
+                            <p>Do you want to find a friend who has the same interest in travelling? Sign up!</p>
                         </div>
 
                         <div className="col-md-6">
