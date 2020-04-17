@@ -18,7 +18,6 @@ public class CommentService {
         return repository.findAll().stream()
                 .sorted(Comparator.comparing(sort.equals("sort") ? Comment::getBody : Comment::getBody))
                 .collect(Collectors.toList());
-
     }
 
     public Optional<Comment> getByID(Long id) {
@@ -39,5 +38,9 @@ public class CommentService {
 
     public List<Comment> getAllByPostId(Long postId){
         return repository.findAllByPostId(postId);
+    }
+
+    public List<Comment>  getAllCommentsByUserID(Long userId) {
+        return repository.findAllCommentsByUserId(userId);
     }
 }

@@ -2,6 +2,7 @@ package se.kth.sda.skeleton.posts;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import se.kth.sda.skeleton.user.User;
 
 import java.util.Comparator;
 import java.util.List;
@@ -36,4 +37,7 @@ public class PostService {
     public void deleteById(Long id) {
         repository.deleteById(id);
     }
+
+    public List<Post> getAllPostByUserId(Long userId){ return repository.findAllByUserId(userId); }
+
 }

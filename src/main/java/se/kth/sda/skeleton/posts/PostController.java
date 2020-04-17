@@ -4,10 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import se.kth.sda.skeleton.user.User;
 
 import java.util.List;
-import java.util.Optional;
-
 
 @RestController
 @RequestMapping("/posts")
@@ -25,6 +24,11 @@ public class PostController {
     public Post getByID(@PathVariable Long id) {
         return postService.getByID(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    }
+
+    @GetMapping("/{user_id}")
+    public List<Post> getAllPostByUserId(@PathVariable Long userId){
+        return postService.getAllPostByUserId(userId);
     }
 
     @PostMapping("")

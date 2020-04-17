@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+
+import java.sql.ClientInfoStatus;
 import java.util.List;
 
 
@@ -29,6 +31,11 @@ public class CommentController {
     public Comment getByID(@PathVariable Long id) {
         return commentService.getByID(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    }
+
+    @GetMapping("/{user_id}")
+    public List<Comment> getAllCommentsByUserID(@PathVariable Long userId){
+        return commentService.getAllCommentsByUserID(userId);
     }
 
     @PostMapping("")
