@@ -1,15 +1,27 @@
 import React from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
-function PostCard({ post, onDeleteClick,onUpdateClick}) {
+function PostCard(props) {
+
   return (
     <div className='card mt-3'>
       <div className='card-body'>
-        <p>{post.body}</p>
+        <Link to={`/posts/${props.post.id}`}>
+          <p>{props.post.title}</p>
+        </Link>
 
-        <button className='btn btn-warning' onClick={onUpdateClick} id='update'>
-          PUT/PATCH
+        <p>{props.post.body}</p>
+
+        <button
+          className='btn btn-warning'
+          onClick={props.onUpdateClick}
+          id='update'>
+          Edit
         </button>
-        <button className='btn btn-danger' onClick={onDeleteClick} id='delete'>
+        <button
+          className='btn btn-danger'
+          onClick={props.onDeleteClick}
+          id='delete'>
           DELETE
         </button>
       </div>

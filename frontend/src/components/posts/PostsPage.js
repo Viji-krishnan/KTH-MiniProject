@@ -1,7 +1,8 @@
-import React from "react";
-import PostsApi from "./../../api/PostsApi";
-import PostForm from "./PostForm";
-import PostCard from "./PostCard";
+import React from 'react';
+import PostsApi from './../../api/PostsApi';
+import PostForm from './PostForm';
+import PostCard from './PostCard';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 class PostsPage extends React.Component {
   constructor(props) {
@@ -9,7 +10,12 @@ class PostsPage extends React.Component {
 
     this.state = {
       posts: [],
+      
     };
+  }
+
+  changeEditMode=()=>{
+    console.log("lets edit")
   }
 
   async createPost(postData) {
@@ -69,9 +75,10 @@ class PostsPage extends React.Component {
             key={post.id}
             post={post}
             onDeleteClick={() => this.deletePost(post)}
-            onUpdateClick={() => this.updatePost(post)}
+            onUpdateClick={() => this.changeEditMode}
           />
         ))}
+        
       </div>
     );
   }

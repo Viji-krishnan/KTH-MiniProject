@@ -1,34 +1,23 @@
 import React from 'react';
 
-function PostForm({ onSubmit }) {
-  const [title, setTitle] = React.useState('');
+function CommentForm(props) {
   const [body, setBody] = React.useState('');
 
   const handleSubmit = () => {
     // Invoke the passed in event callback
-     onSubmit({ title: title, body: body });
-  
+    props.onSubmit({body: body});
 
     // Clear the input field
-    setTitle('');
     setBody('');
   };
 
   return (
     <div className='card'>
       <div className='card-body'>
-        <h4 className='card-title'>What's on your mind?</h4>
+        <h4 className='card-title'></h4>
         <div>
           <div className='form-group'>
-            Post Title
-            <textarea
-              className='form-control'
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-            />
-          </div>
-          <div className='form-group'>
-            Post Body
+            Comment Body
             <textarea
               className='form-control'
               value={body}
@@ -38,7 +27,7 @@ function PostForm({ onSubmit }) {
 
           <div className='form-group'>
             <button className='btn btn-primary' onClick={handleSubmit}>
-              Post
+              Comment
             </button>
           </div>
         </div>
@@ -47,4 +36,4 @@ function PostForm({ onSubmit }) {
   );
 }
 
-export default PostForm;
+export default CommentForm;

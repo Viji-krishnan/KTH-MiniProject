@@ -26,3 +26,9 @@ body {
 .App-link {
   color: #09d3ac;
 }
+
+#logo{
+  width: 10vw;
+
+  margin: 20px;
+}

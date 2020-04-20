@@ -15,6 +15,7 @@ import Navbar from "./components/layout/Navbar";
 import LoginPage from "./components/auth/LoginPage";
 import HomePage from './components/home/HomePage';
 import PostsPage from "./components/posts/PostsPage";
+import Post from "./components/posts/Post";
 import ChatPage from './components/chat/ChatPage';
 
 function App() {
@@ -22,25 +23,27 @@ function App() {
   Auth.bindLoggedInStateSetter(setLoggedIn);
   
   const loggedInRouter = (
-            <Router>
-                <Navbar onLogout={() => Auth.logout()} />
+    <Router>
+      <Navbar onLogout={() => Auth.logout()} />
 
-                <div className="container mt-5">
-                    <Switch>
-                        <Route path="/posts">
-                            <PostsPage/>
-                        </Route>
+      <div className='container mt-5'>
+        <Switch>
+          <Route exact path='/posts/:id' component={Post} />
 
-                        <Route path="/chat">
-                            <ChatPage/>
-                        </Route>
+          <Route path='/posts'>
+            <PostsPage />
+          </Route>
 
-                        <Route path="/">
-                          <HomePage/>
-                        </Route>
-                    </Switch>
-                </div>
-            </Router>
+          <Route path='/chat'>
+            <ChatPage />
+          </Route>
+
+          <Route path='/'>
+            <HomePage />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 
   return (loggedIn ? loggedInRouter : <LoginPage/>);
