@@ -20,26 +20,30 @@ public class PostController {
     public List<Post> getAll() {
         return postService.getAll();
     }
+
     @GetMapping("/posts/{id}")
     public Post getById(@PathVariable Long id) {
         return postService.getById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
-    @GetMapping("/posts")
+    @PostMapping("/posts")
     public Post create(@RequestBody Post newPost) {
+
         return postService.create(newPost);
     }
 
-    @PutMapping("/posts")
-    public Post update(@RequestBody Post updatePost) {
-        return postService.update(updatePost);
+    @PutMapping("/posts/{id}")
+    public Post update(@PathVariable Long id,@RequestBody Post updatePost) throws Exception {
+
+        return postService.update(id,updatePost);
     }
 
     @DeleteMapping("/posts/{id}")
     public void delete(@PathVariable Long id) {
         postService.deleteById(id);
     }
+
 
 
 }

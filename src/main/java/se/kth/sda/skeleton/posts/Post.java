@@ -1,10 +1,14 @@
 package se.kth.sda.skeleton.posts;
 
+import se.kth.sda.skeleton.comments.Comment;
+
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "post")
-public class Post {
+public class Post implements Serializable {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,6 +17,10 @@ public class Post {
     private String body;
     @Column(name = "title")
     private String title;
+
+
+//    @OneToMany(mappedBy = "post", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    private List<Comment> comments;
 
 
     public Post() {

@@ -1,12 +1,12 @@
 package se.kth.sda.skeleton.posts;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 /*
     @TODO Autowire the PostRepository and use it to implement all the service methods.
@@ -32,9 +32,12 @@ public class PostService {
     }
 
 
-    public Post update(Post post) {
-        // @TODO update the post if it exists in DB and return the updated post.
-        return repository.save(post);
+    public Post update(Long id,Post postRequest) throws Exception {
+        return repository.findById(id).map(post -> {
+            post.setTitle(postRequest.getTitle());
+            post.setBody(postRequest.getBody());
+            return repository.save(post);
+        }).orElseThrow(() -> new Exception("PostId " + id + " not found"));
     }
 
     public void deleteById(Long id) {
