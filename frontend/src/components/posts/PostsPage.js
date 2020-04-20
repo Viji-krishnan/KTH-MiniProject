@@ -14,9 +14,6 @@ class PostsPage extends React.Component {
     };
   }
 
-  changeEditMode=()=>{
-    console.log("lets edit")
-  }
 
   async createPost(postData) {
     try {
@@ -34,7 +31,7 @@ class PostsPage extends React.Component {
 
   async updatePost(postData) {
     try {
-      const response = await PostsApi.updatePost(postData);
+      const response = await PostsApi.updatePost(postData.id,postData);
       const post = response.data;
       const newPosts = this.state.posts.concat(post);
 
@@ -75,10 +72,9 @@ class PostsPage extends React.Component {
             key={post.id}
             post={post}
             onDeleteClick={() => this.deletePost(post)}
-            onUpdateClick={() => this.changeEditMode}
+            onSubmit={(postData) => this.updatePost(postData)}
           />
         ))}
-        
       </div>
     );
   }

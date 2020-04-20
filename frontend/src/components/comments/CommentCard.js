@@ -5,7 +5,8 @@ function CommentCard(props) {
 
   const handleSubmit = () => {
     // Invoke the passed in event callback
-    props.onSubmit({ body: body });
+    console.log(body);
+    props.onSubmit({ id:props.comment.id, body: body });
 
     // Clear the input field
     setBody('');
@@ -49,7 +50,7 @@ function CommentCard(props) {
   const editedText = (
     <textarea
       className='form-control'
-      value={props.comment.body}
+      value={body}
       onChange={(e) => setBody(e.target.value)}
     />
   );

@@ -62,33 +62,35 @@ const Post = (props) => {
     }
   }
 
-
   async function deleteComment(comment) {
     try {
       const response = await CommentsApi.deleteComment(postId, comment.id);
-      const notDeletedComments = comments.filter(c => c.id !==comment.id)
+      const notDeletedComments = comments.filter((c) => c.id !== comment.id);
       setComments(notDeletedComments);
     } catch (e) {
       console.error(e);
     }
   }
 
-  const postDiv = <div> {post.title}
+  const postDiv = (
+    <div>
+      {' '}
+      {post.title}
       <br />
-      {post.body} 
-      </div>
+      {post.body}
+    </div>
+  );
   const commentForm = <CommentForm onSubmit={createComment} />;
   const commentList = comments.map((comment) => (
     <CommentCard
       key={comment.commentId}
       comment={comment}
       onDeleteClick={() => deleteComment(comment)}
-      onSaveClick={() => updateComment(comment)}
-      
-      editMode={editing}
+      onSubmit={updateComment}
+      /*       onSaveClick={() => updateComment(comment)}
+       */ editMode={editing}
     />
   ));
-
 
   return (
     <div className='Posts'>
