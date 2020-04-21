@@ -1,43 +1,47 @@
 package se.kth.sda.skeleton.posts;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import se.kth.sda.skeleton.user.User;
 
-import java.util.Comparator;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
+/*
+    @TODO Autowire the PostRepository and use it to implement all the service methods.
+ */
 @Service
 public class PostService {
 
     @Autowired
     private PostRepository repository;
 
-    public List<Post> getAll(String sort) {
-        return repository.findAll().stream()
-                .sorted(Comparator.comparing(sort.equals("name") ? Post::getBody : Post::getBody))
-                .collect(Collectors.toList());
+    public List<Post> getAll() {
+        return repository.findAll();
 
     }
 
-    public Optional<Post> getByID(Long id) {
+    public Optional<Post> getById(Long id) {
+        // @TODO get a post by ID if it exists
         return repository.findById(id);
     }
 
-    public Post save(Post post) {
-        return repository.save(post);
+    public Post create(Post newPost) {
+        return repository.save(newPost);
     }
 
-    public Post update(Post post) {
-        return repository.save(post);
+
+    public Post update(Long id,Post postRequest) throws Exception {
+        return repository.findById(id).map(post -> {
+            post.setTitle(postRequest.getTitle());
+            post.setBody(postRequest.getBody());
+            return repository.save(post);
+        }).orElseThrow(() -> new Exception("PostId " + id + " not found"));
     }
 
     public void deleteById(Long id) {
+        // @TODO delete the post by id
         repository.deleteById(id);
     }
-
-    public List<Post> getAllPostByUserId(Long userId){ return repository.findAllByUserId(userId); }
-
 }

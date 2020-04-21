@@ -1,66 +1,58 @@
 package se.kth.sda.skeleton.posts;
 
-import se.kth.sda.skeleton.user.User;
+import se.kth.sda.skeleton.audit.AuditModel;
+import se.kth.sda.skeleton.comments.Comment;
 
 import javax.persistence.*;
-
+import java.io.Serializable;
+import java.util.List;
 
 @Entity
-@Table(name="post")
-public class Post {
-
+@Table(name = "post")
+public class Post extends AuditModel {
     @Id
-    @Column(name="id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name="title")
+    @Column(name = "body")
+    private String body;
+    @Column(name = "title")
     private String title;
 
-    @Column(name="body")
-    private String body;
 
-    @ManyToOne
-    private User user;
+//    @OneToMany(mappedBy = "post", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    private List<Comment> comments;
 
-
-
-//    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
-//    private List<Comment> comments = new ArrayList<>();
 
     public Post() {
     }
 
-    public Post(User user){
-        this.user = user;
-    }
-
-    public Post(String body) {
+    public Post(String body, String title) {
         this.body = body;
+        this.title = title;
     }
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getTitle() { return title; }
-
-    public void setTitle(String title) { this.title = title; }
-
     public String getBody() {
         return body;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public void setBody(String body) {
         this.body = body;
     }
 
-    public User getUser() { return user; }
-
-    public void setUser(User user) { this.user = user; }
-
+    public void setTitle(String title) {
+        this.title = title;
+    }
 }
