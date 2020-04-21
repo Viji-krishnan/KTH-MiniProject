@@ -28,7 +28,7 @@ function PostForm({ onSubmit }) {
             />
           </div>
           <div className='form-group'>
-            Post Body
+            Post
             <textarea
               className='form-control'
               value={body}

@@ -73,11 +73,13 @@ const Post = (props) => {
   }
 
   const postDiv = (
-    <div>
-      {' '}
-      {post.title}
-      <br />
-      {post.body}
+    <div className='card mt-3'>
+      <div className='card-body'>
+        {' '}
+        Post Title: {post.title}
+        <br />
+        Post: {post.body}
+      </div>
     </div>
   );
   const commentForm = <CommentForm onSubmit={createComment} />;

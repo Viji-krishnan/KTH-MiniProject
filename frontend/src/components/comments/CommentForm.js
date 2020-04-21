@@ -14,10 +14,10 @@ function CommentForm(props) {
   return (
     <div className='card'>
       <div className='card-body'>
-        <h4 className='card-title'></h4>
+        
         <div>
           <div className='form-group'>
-            Comment Body
+            Comment
             <textarea
               className='form-control'
               value={body}

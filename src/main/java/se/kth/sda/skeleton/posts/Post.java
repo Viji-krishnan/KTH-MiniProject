@@ -1,5 +1,6 @@
 package se.kth.sda.skeleton.posts;
 
+import se.kth.sda.skeleton.audit.AuditModel;
 import se.kth.sda.skeleton.comments.Comment;
 
 import javax.persistence.*;
@@ -8,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "post")
-public class Post implements Serializable {
+public class Post extends AuditModel {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)

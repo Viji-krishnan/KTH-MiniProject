@@ -10,6 +10,7 @@ function CommentCard(props) {
 
     // Clear the input field
     setBody('');
+    window.location.reload();
   };
   const [edit, setEdit] = useState(false);
  
@@ -59,9 +60,13 @@ function CommentCard(props) {
       <div className='card-body'>
         {edit && editedText}
         <p>{edit || props.comment.body}</p>
+        <p> Created at: {props.comment.createdAt}</p>
+        {/* <p> {edit && props.comment.updatedAt}</p> */}
+        <p>Updated at: {props.comment.updatedAt}</p>
         {edit || editButton}
         {edit || deleteButton}
         {edit && saveButton}
+
         {edit && cancelButton}
       </div>
     </div>

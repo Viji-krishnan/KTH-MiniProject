@@ -7,12 +7,12 @@ function PostCard(props) {
 
   const handleSubmit = () => {
     console.log(title);
-    
     console.log(body);
-
     props.onSubmit({ id: props.post.id, title: title, body: body });
     setTitle('');
     setBody('');
+
+    window.location.reload();
   };
   const [edit, setEdit] = useState(false);
 
@@ -63,6 +63,7 @@ function PostCard(props) {
       onChange={(e) => setBody(e.target.value)}
     />
   );
+
   return (
     <div className='card mt-3'>
       <div className='card-body'>
@@ -72,11 +73,13 @@ function PostCard(props) {
         {edit && editedTextTitle}
         {edit && editedTextBody}
         <p>{edit || props.post.body}</p>
+        <p> Created at: {props.post.createdAt}</p>
+        <p> Updated at: {props.post.updatedAt}</p>
+
         {edit || editButton}
         {edit || deleteButton}
         {edit && saveButton}
         {edit && cancelButton}
-
       </div>
     </div>
   );

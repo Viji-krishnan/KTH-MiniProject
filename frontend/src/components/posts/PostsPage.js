@@ -67,14 +67,18 @@ class PostsPage extends React.Component {
     return (
       <div>
         <PostForm onSubmit={(postData) => this.createPost(postData)} />
+       
         {posts.map((post) => (
           <PostCard
             key={post.id}
             post={post}
+            createdAt={post.createdAt}
             onDeleteClick={() => this.deletePost(post)}
             onSubmit={(postData) => this.updatePost(postData)}
           />
         ))}
+
+        
       </div>
     );
   }

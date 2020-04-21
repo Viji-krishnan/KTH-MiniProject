@@ -3,6 +3,7 @@ package se.kth.sda.skeleton.comments;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import se.kth.sda.skeleton.audit.AuditModel;
 import se.kth.sda.skeleton.posts.Post;
 
 import javax.persistence.*;
@@ -10,7 +11,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "comment")
-public class Comment implements Serializable {
+public class Comment extends AuditModel {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
